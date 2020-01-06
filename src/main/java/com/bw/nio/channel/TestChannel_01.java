@@ -3,7 +3,7 @@
  *
  * 注意：本内容仅限于内部传阅，禁止外泄以及用于其他的商业目的
  */
-package com.bw.nio;
+package com.bw.nio.channel;
 
 /**
  * @author yan.zhang
@@ -51,7 +51,7 @@ import java.nio.file.StandardOpenOption;
  */
 
 
-public class TestChannel {
+public class TestChannel_01 {
 
     @Test
     public void test1() throws IOException {
@@ -71,7 +71,7 @@ public class TestChannel {
             //缓冲区的数据写入通道
             buffer.flip();//切换成读取数据模式
             outChannel.write(buffer);//将缓冲区数据写入通道
-            buffer.clear();//清空缓冲区
+            buffer.clear();//清空缓冲区 position,limit复位，否则position = limit 进入死循环
         }
 
         outChannel.close();
@@ -84,14 +84,13 @@ public class TestChannel {
     @Test
     public void test2() throws IOException {
         //JDK1.7之后open方法
-        FileChannel readChannel = FileChannel.open(Paths.get("C:\\Users\\Lenovo\\Desktop\\宝唯\\图片\\docker.PNG"),
-                StandardOpenOption.READ);
+        FileChannel readChannel = FileChannel.open(Paths.get("C:\\Users\\Lenovo\\Desktop\\宝唯\\图片\\docker.PNG"), StandardOpenOption.READ);
 
-        FileChannel writeChannel = FileChannel.open(Paths.get("C:\\Users\\Lenovo\\Desktop\\宝唯\\图片\\3.PNG"),
-                StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);//CREATE_NEW代表文件不存在创建，存在报错
+        FileChannel writeChannel = FileChannel.open(Paths.get("C:\\Users\\Lenovo\\Desktop\\宝唯\\图片\\3.PNG"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);//CREATE_NEW代表文件不存在创建，存在报错
 
-
-        //创建直接缓冲区  缓冲区在物理内存中
+        //mappedByteBuffer 可以让文件直接在内存（堆外内存）修改
+        //创建直接缓冲区  缓冲区在物理内存中 ，操作系统级别的修改，性能较高，无需将文件copy到堆内存
+        //参数1：读写模式  参数2：修改的起始位置 参数3：映射到内存的大小（不是索引位置），即将文件映射到内存的大小
         MappedByteBuffer inMapBuffer = readChannel.map(FileChannel.MapMode.READ_ONLY, 0, readChannel.size());
         MappedByteBuffer outMapBuffer = writeChannel.map(FileChannel.MapMode.READ_WRITE, 0, readChannel.size());
 

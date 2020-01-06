@@ -3,7 +3,7 @@
  *
  * 注意：本内容仅限于内部传阅，禁止外泄以及用于其他的商业目的
  */
-package com.bw.nio;
+package com.bw.nio.buffer;
 
 import org.junit.Test;
 
@@ -52,7 +52,7 @@ public class TestBuffer {
 
 
         //2.put()存入数据到缓冲区中
-        System.out.println("--------------put()-------------");
+        System.out.println("--------------put()-------------");//put()之后position会+1，如果是put(int index) position不会+1
         String str = "abcdef";
         bf.put(str.getBytes());
         System.out.println(bf.position());
@@ -67,7 +67,7 @@ public class TestBuffer {
         System.out.println(bf.capacity());
 
         //4.利用get()读取缓冲区数据
-        System.out.println("--------------get()-------------");
+        System.out.println("--------------get()-------------");  //get()之后position会+1，如果是get(int index) position不会+1
         byte[] dst = new byte[bf.limit()];
         bf.get(dst);
         System.out.println(new String(dst, 0, dst.length));
