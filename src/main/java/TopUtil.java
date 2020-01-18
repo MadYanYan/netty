@@ -25,9 +25,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.zip.GZIPInputStream;
 
-/**
- * 淘宝开放平台(TOP)相关util
- */
+
 public class TopUtil {
     public static String signTopRequest(Map<String, String> params, String secret, String signMethod) throws IOException {
         //检查参数是否已经排序
