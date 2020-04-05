@@ -1,4 +1,4 @@
-package com.bw.nio;
+package com.bw.nio.niodemo;
 
 
 import java.io.IOException;
@@ -23,8 +23,8 @@ public class NioClient {
         }
         String str = "hello world!";
         ByteBuffer buffer = ByteBuffer.wrap(str.getBytes());
-
-        socketChannel.write(buffer);//发送数据 将buffer中数据写入channel
+//发送数据 将buffer中数据写入channel
+        socketChannel.write(buffer);
 
         System.in.read();
     }

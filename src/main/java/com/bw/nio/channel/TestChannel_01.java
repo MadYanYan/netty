@@ -42,6 +42,7 @@ import java.nio.file.StandardOpenOption;
  * 3)JDK1.7  NIO的Files工具类 newByteChannel()
  * <p>
  * 4.通道之间的数据传输
+ * 底层使用到零拷贝
  * transferFrom()
  * transferTo()
  * <p>
@@ -122,7 +123,13 @@ public class TestChannel_01 {
 
     @Test
     public void test4() throws IOException {
-        //
+        int a = 17;
+        int b = 8;
+
+//      res = a % b == 0 ? a / b : a / b + 1;
+
+        double ceil = Math.ceil((double) a / b);
+        System.out.println((int) ceil);
 
     }
 

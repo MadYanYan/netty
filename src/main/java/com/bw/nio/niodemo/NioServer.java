@@ -1,4 +1,4 @@
-package com.bw.nio;
+package com.bw.nio.niodemo;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -49,7 +49,8 @@ public class NioServer {
 
                     System.out.println("客户端连接成功" + socketChannel.hashCode());
                 }
-                //读事件
+
+                //读事件  
                 if (selectionKey.isReadable()) {
                     //获取到selectionKey对应的channel
                     SocketChannel channel = (SocketChannel) selectionKey.channel();
