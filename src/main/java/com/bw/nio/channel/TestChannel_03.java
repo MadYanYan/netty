@@ -12,7 +12,8 @@ public class TestChannel_03 {
         byteBuffer.flip();
 
         System.out.println(byteBuffer.getInt());
-        System.out.println(byteBuffer.getChar());//put放入的数据类型和get的数据类型要一致
+        //put放入的数据类型和get的数据类型要一致
+        System.out.println(byteBuffer.getChar());
 //        System.out.println(byteBuffer.getLong());
     }
 }

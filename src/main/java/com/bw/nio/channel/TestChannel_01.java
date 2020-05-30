@@ -71,7 +71,8 @@ public class TestChannel_01 {
         while ((inChannel.read(buffer)) != -1) {
             //缓冲区的数据写入通道
             buffer.flip();//切换成读取数据模式
-            outChannel.write(buffer);//将缓冲区数据写入通道
+            //将缓冲区数据写入通道
+            outChannel.write(buffer);
             buffer.clear();//清空缓冲区 position,limit复位，否则position = limit 进入死循环
         }
 

@@ -40,7 +40,6 @@ public class TestBuffer {
      * 直接缓冲区：通过allocateDirect()方法分配直接缓冲区，将缓冲区建立在物理内存中，可以提高效率
      */
 
-
     @Test
     public void test1() {
         //1.分配指定大小的缓冲区
@@ -52,7 +51,8 @@ public class TestBuffer {
 
 
         //2.put()存入数据到缓冲区中
-        System.out.println("--------------put()-------------");//put()之后position会+1，如果是put(int index) position不会+1
+        //put()之后position会+1，如果是put(int index) position不会+1
+        System.out.println("--------------put()-------------");
         String str = "abcdef";
         bf.put(str.getBytes());
         System.out.println(bf.position());
@@ -67,7 +67,8 @@ public class TestBuffer {
         System.out.println(bf.capacity());
 
         //4.利用get()读取缓冲区数据
-        System.out.println("--------------get()-------------");  //get()之后position会+1，如果是get(int index) position不会+1
+        //get()之后position会+1，如果是get(int index) position不会+1
+        System.out.println("--------------get()-------------");
         byte[] dst = new byte[bf.limit()];
         bf.get(dst);
         System.out.println(new String(dst, 0, dst.length));
@@ -92,8 +93,6 @@ public class TestBuffer {
 
         //即使clear数据依然存在
         System.out.println((char) bf.get());
-
-
     }
 
     @Test
